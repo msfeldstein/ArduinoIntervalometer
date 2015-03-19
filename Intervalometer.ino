@@ -1,19 +1,16 @@
 
- #define pinIRLED 10 // IR LED
- #define pinAudioIn 4
-// The setup() method runs once, when the sketch starts
+#define pinIRLED 10 // IR LED
+
 
 void setup()   {                
-  // initialize the IR digital pin as an output:
   pinMode(pinIRLED, OUTPUT);      
-   pinMode(pinAudioIn, INPUT);
   Serial.begin(9600);
 }
  
 void loop()                     
 {
-  Serial.println(analogRead(pinAudioIn));
-  //takePicture();
+  takePicture();
+  delay(2000);
 }
 
 void pulseON(int pulseTime) {
@@ -29,6 +26,7 @@ void pulseOFF(unsigned long startDelay) {
   unsigned long endDelay = micros() + startDelay;       // create the microseconds to delay for
   while(micros() < endDelay);
 }
+
 void takePicture() {
   for (int i=0; i < 2; i++) {    // impulse send twice
     pulseON(2336);
